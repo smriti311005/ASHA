@@ -1,0 +1,496 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom Scrollbar - Dark Mode Default */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Pulse animation for active disaster alerts */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.animate-radar-pulse {
+  animation: radar-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes fire-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(239, 68, 68, 1));
+  }
+}
+
+.animate-fire-glow {
+  animation: fire-glow 1.5s infinite ease-in-out;
+}
+
+/* Glassmorphism card surfaces - Dark Mode */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-glow {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 20px 0 rgba(16, 185, 129, 0.1);
+}
+
+/* Leaflet map custom dark overrides */
+.leaflet-container {
+  background: #090d16 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+/* ==================================================================== */
+/*                      LIGHT THEME SPECIFIC STYLING                    */
+/* ==================================================================== */
+
+[data-theme="light"],
+.light {
+  color-scheme: light;
+}
+
+[data-theme="light"] body,
+.light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] * {
+  border-color: #e2e8f0;
+}
+
+/* Light Theme Scrollbars */
+[data-theme="light"] ::-webkit-scrollbar-track,
+.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb,
+.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover,
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Light Theme Base Container Overrides */
+[data-theme="light"] .min-h-screen,
+.light .min-h-screen {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] header,
+.light header {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] aside,
+.light aside {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-right: 1px solid #e2e8f0 !important;
+  box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] main,
+.light main {
+  background: #f1f5f9 !important;
+  background-image: none !important;
+}
+
+/* Surfaces and Panels in Light Mode */
+[data-theme="light"] .glass-panel,
+.light .glass-panel {
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.02) !important;
+}
+
+[data-theme="light"] .glass-panel-glow,
+.light .glass-panel-glow {
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 6px 24px 0 rgba(16, 185, 129, 0.1), 0 2px 6px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Universal Light Theme Card & Box Background Overrides */
+[data-theme="light"] [class*="bg-slate-900"],
+.light [class*="bg-slate-900"],
+[data-theme="light"] [class*="bg-\[\#090d16\]"],
+[data-theme="light"] [class*="bg-\[\#0c1222\]"],
+[data-theme="light"] [class*="bg-\[\#0b101c\]"],
+[data-theme="light"] [class*="bg-\[\#080c14\]"],
+[data-theme="light"] [class*="bg-\[\#0a0e1a\]"],
+[data-theme="light"] [class*="bg-\[\#070b14\]"],
+[data-theme="light"] [class*="bg-\[\#080d1a\]"] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Secondary list items / nested cards in Light Mode */
+[data-theme="light"] [class*="bg-slate-950"],
+.light [class*="bg-slate-950"] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] [class*="bg-slate-950"]:hover,
+.light [class*="bg-slate-950"]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Subtle slate-800 elements like progress bar tracks and pills */
+[data-theme="light"] [class*="bg-slate-800"]:not(button),
+.light [class*="bg-slate-800"]:not(button) {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] [class*="border-slate-800"],
+[data-theme="light"] [class*="border-slate-700"],
+.light [class*="border-slate-800"],
+.light [class*="border-slate-700"] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Light Theme Banner & Container Gradients */
+[data-theme="light"] [class*="from-slate-900"],
+.light [class*="from-slate-900"] {
+  background: linear-gradient(to right, #ffffff, #f8fafc) !important;
+  background-image: linear-gradient(to right, #ffffff, #f8fafc) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] [class*="from-red-950"],
+.light [class*="from-red-950"] {
+  background: linear-gradient(to right, #fff1f2, #fffbeb, #ffffff) !important;
+  background-image: linear-gradient(to right, #fff1f2, #fffbeb, #ffffff) !important;
+  border: 1px solid #fecdd3 !important;
+  box-shadow: 0 4px 16px -2px rgba(239, 68, 68, 0.06) !important;
+}
+
+[data-theme="light"] [class*="from-emerald-950"],
+.light [class*="from-emerald-950"] {
+  background: linear-gradient(to right, #ecfdf5, #f0fdf4, #ffffff) !important;
+  background-image: linear-gradient(to right, #ecfdf5, #f0fdf4, #ffffff) !important;
+  border: 1px solid #a7f3d0 !important;
+  box-shadow: 0 4px 16px -2px rgba(16, 185, 129, 0.06) !important;
+}
+
+[data-theme="light"] [class*="from-blue-950"],
+.light [class*="from-blue-950"] {
+  background: linear-gradient(to right, #eff6ff, #f0f9ff, #ffffff) !important;
+  background-image: linear-gradient(to right, #eff6ff, #f0f9ff, #ffffff) !important;
+  border: 1px solid #bfdbfe !important;
+  box-shadow: 0 4px 16px -2px rgba(59, 130, 246, 0.06) !important;
+}
+
+[data-theme="light"] [class*="from-amber-950"],
+.light [class*="from-amber-950"] {
+  background: linear-gradient(to right, #fffbeb, #fef3c7, #ffffff) !important;
+  background-image: linear-gradient(to right, #fffbeb, #fef3c7, #ffffff) !important;
+  border: 1px solid #fde68a !important;
+  box-shadow: 0 4px 16px -2px rgba(245, 158, 11, 0.06) !important;
+}
+
+[data-theme="light"] [class*="from-purple-950"],
+.light [class*="from-purple-950"] {
+  background: linear-gradient(to right, #faf5ff, #f3e8ff, #ffffff) !important;
+  background-image: linear-gradient(to right, #faf5ff, #f3e8ff, #ffffff) !important;
+  border: 1px solid #e9d5ff !important;
+  box-shadow: 0 4px 16px -2px rgba(168, 85, 247, 0.06) !important;
+}
+
+/* Light Mode Status Chips & Badges */
+[data-theme="light"] [class*="bg-emerald-950"],
+.light [class*="bg-emerald-950"] {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+[data-theme="light"] [class*="bg-emerald-950"] *,
+.light [class*="bg-emerald-950"] * {
+  color: #047857 !important;
+}
+
+[data-theme="light"] [class*="bg-blue-950"],
+.light [class*="bg-blue-950"] {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+  color: #1d4ed8 !important;
+}
+[data-theme="light"] [class*="bg-blue-950"] *,
+.light [class*="bg-blue-950"] * {
+  color: #1d4ed8 !important;
+}
+
+[data-theme="light"] [class*="bg-amber-950"],
+.light [class*="bg-amber-950"] {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+}
+[data-theme="light"] [class*="bg-amber-950"] *,
+.light [class*="bg-amber-950"] * {
+  color: #b45309 !important;
+}
+
+[data-theme="light"] [class*="bg-purple-950"],
+.light [class*="bg-purple-950"] {
+  background-color: #faf5ff !important;
+  border-color: #e9d5ff !important;
+  color: #7e22ce !important;
+}
+[data-theme="light"] [class*="bg-purple-950"] *,
+.light [class*="bg-purple-950"] * {
+  color: #7e22ce !important;
+}
+
+[data-theme="light"] [class*="bg-red-950"],
+.light [class*="bg-red-950"] {
+  background-color: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+  color: #b91c1c !important;
+}
+[data-theme="light"] [class*="bg-red-950"] *,
+.light [class*="bg-red-950"] * {
+  color: #b91c1c !important;
+}
+
+/* Light Mode Secondary / Slate Buttons (e.g. Download Bulletin, filter pills) */
+[data-theme="light"] button[class*="bg-slate-800"],
+[data-theme="light"] button[class*="bg-slate-900"],
+[data-theme="light"] button[class*="bg-slate-950"],
+.light button[class*="bg-slate-800"],
+.light button[class*="bg-slate-900"],
+.light button[class*="bg-slate-950"] {
+  background-color: #f1f5f9 !important;
+  background-image: none !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] button[class*="bg-slate-800"]:hover,
+[data-theme="light"] button[class*="bg-slate-900"]:hover,
+[data-theme="light"] button[class*="bg-slate-950"]:hover,
+.light button[class*="bg-slate-800"]:hover,
+.light button[class*="bg-slate-900"]:hover,
+.light button[class*="bg-slate-950"]:hover {
+  background-color: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+  color: #020617 !important;
+}
+
+[data-theme="light"] button[class*="bg-slate-800"] *,
+[data-theme="light"] button[class*="bg-slate-900"] *,
+[data-theme="light"] button[class*="bg-slate-950"] *,
+.light button[class*="bg-slate-800"] *,
+.light button[class*="bg-slate-900"] *,
+.light button[class*="bg-slate-950"] * {
+  color: #0f172a !important;
+}
+
+/* Light Mode Primary / Action Colored Buttons ALWAYS maintain crisp pure white text */
+[data-theme="light"] button[class*="bg-red-"],
+[data-theme="light"] button[class*="bg-emerald-"],
+[data-theme="light"] button[class*="bg-blue-"],
+[data-theme="light"] button[class*="bg-amber-"],
+[data-theme="light"] button[class*="bg-purple-"],
+[data-theme="light"] button[class*="bg-teal-"],
+[data-theme="light"] button[class*="from-emerald-"],
+[data-theme="light"] button[class*="from-teal-"],
+[data-theme="light"] button[class*="from-red-"],
+[data-theme="light"] button[class*="from-blue-"],
+.light button[class*="bg-red-"],
+.light button[class*="bg-emerald-"],
+.light button[class*="bg-blue-"],
+.light button[class*="bg-amber-"],
+.light button[class*="bg-purple-"],
+.light button[class*="bg-teal-"],
+.light button[class*="from-emerald-"],
+.light button[class*="from-teal-"],
+.light button[class*="from-red-"],
+.light button[class*="from-blue-"] {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] button[class*="bg-red-"] *,
+[data-theme="light"] button[class*="bg-emerald-"] *,
+[data-theme="light"] button[class*="bg-blue-"] *,
+[data-theme="light"] button[class*="bg-amber-"] *,
+[data-theme="light"] button[class*="bg-purple-"] *,
+[data-theme="light"] button[class*="bg-teal-"] *,
+[data-theme="light"] button[class*="from-emerald-"] *,
+[data-theme="light"] button[class*="from-teal-"] *,
+[data-theme="light"] button[class*="from-red-"] *,
+[data-theme="light"] button[class*="from-blue-"] *,
+.light button[class*="bg-red-"] *,
+.light button[class*="bg-emerald-"] *,
+.light button[class*="bg-blue-"] *,
+.light button[class*="bg-amber-"] *,
+.light button[class*="bg-purple-"] *,
+.light button[class*="bg-teal-"] *,
+.light button[class*="from-emerald-"] *,
+.light button[class*="from-teal-"] *,
+.light button[class*="from-red-"] *,
+.light button[class*="from-blue-"] * {
+  color: #ffffff !important;
+}
+
+/* Light Theme Text Color High-Contrast Overrides for Non-Button Elements */
+[data-theme="light"] :not(button)[class*="text-white"],
+[data-theme="light"] :not(button)[class*="text-slate-100"],
+[data-theme="light"] :not(button)[class*="text-slate-200"],
+.light :not(button)[class*="text-white"],
+.light :not(button)[class*="text-slate-100"],
+.light :not(button)[class*="text-slate-200"] {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] :not(button)[class*="text-slate-300"],
+[data-theme="light"] :not(button)[class*="text-slate-400"],
+.light :not(button)[class*="text-slate-300"],
+.light :not(button)[class*="text-slate-400"] {
+  color: #334155 !important;
+}
+
+[data-theme="light"] :not(button)[class*="text-slate-500"],
+.light :not(button)[class*="text-slate-500"] {
+  color: #475569 !important;
+}
+
+/* Interactive Elements & Form Controls / Textboxes in Light Mode */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select,
+.light input,
+.light textarea,
+.light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder,
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #64748b !important;
+}
+
+[data-theme="light"] select option,
+.light select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Range input sliders in Light Mode */
+[data-theme="light"] input[type="range"],
+.light input[type="range"] {
+  background-color: #e2e8f0 !important;
+}
+
+/* Hover backgrounds on sidebar and table rows */
+[data-theme="light"] .hover\:bg-slate-800\/50:hover,
+[data-theme="light"] .hover\:bg-slate-800:hover,
+.light .hover\:bg-slate-800\/50:hover,
+.light .hover\:bg-slate-800:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Leaflet & Map Popups in Light Mode */
+[data-theme="light"] .leaflet-container {
+  background: #f1f5f9 !important;
+}
+
+[data-theme="light"] .leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+/* Google Maps InfoWindow Light Theme Overrides */
+[data-theme="light"] .gm-style .gm-style-iw-c {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 14px !important;
+}
+
+[data-theme="light"] .gm-style .gm-style-iw-d {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .gm-style .gm-style-iw-tc::after {
+  background-color: #ffffff !important;
+}
