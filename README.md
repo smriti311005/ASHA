@@ -25,7 +25,7 @@
 ASHA AI operates an end-to-end multi-tiered software architecture spanning orbital remote sensing ingestion, PyTorch deep learning inference, high-throughput asynchronous REST APIs, and an interactive command-center dashboard.
 
 <div align="center">
-  <img src="docs/architectureDiagram.png" alt="ASHA AI System Architecture Diagram" width="100%" style="border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);" />
+  <img src="./architectureDiagram.png" alt="ASHA AI System Architecture Diagram" width="100%" style="border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);" />
   <p><i>Figure 1: High-Level End-to-End System Architecture of ASHA AI</i></p>
 </div>
 
