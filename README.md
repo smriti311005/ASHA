@@ -25,63 +25,10 @@
 ASHA AI operates an end-to-end multi-tiered software architecture spanning orbital remote sensing ingestion, PyTorch deep learning inference, high-throughput asynchronous REST APIs, and an interactive command-center dashboard.
 
 <div align="center">
-  <img src="docs/architecture_diagram.png" alt="ASHA AI System Architecture Diagram" width="100%" style="border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);" />
+  <img src="docs/architectureDiagram.png" alt="ASHA AI System Architecture Diagram" width="100%" style="border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);" />
   <p><i>Figure 1: High-Level End-to-End System Architecture of ASHA AI</i></p>
 </div>
 
-### 📐 Architectural Flow & Data Pipeline
-
-```mermaid
-flowchart TD
-    subgraph Ingestion["🛰️ Layer 1: Remote Sensing & Telemetry Ingestion"]
-        S1["Sentinel-1A / 1B SAR<br/>(C-Band Dual-Pol Radar 10m GRD)"]
-        FIRMS["NASA FIRMS & ISRO Bhuvan<br/>(VIIRS / MODIS Thermal Hotspots & FRP)"]
-        CPCB["CPCB CAAQMS Stations<br/>(PM2.5, PM10, NO2, SO2, CO, O3)"]
-        CWC["Central Water Commission<br/>(River Gauges, Danger Levels, Soil Moisture)"]
-    end
-
-    subgraph DeepLearning["🧠 Layer 2: PyTorch 2.10 Deep Learning Core"]
-        FRN["FloodRiskNet<br/>(SAR CNN Spatial Extractor + Hydrological LSTM)"]
-        FDN["FireDangerNet<br/>(Multi-Head Self-Attention Transformer)"]
-        AQI["AQIBiLSTMNet<br/>(3-Layer BiLSTM + Multi-Horizon Forecast Heads)"]
-        RE["Multi-Hazard Risk Engine<br/>(Composite Severity Matrix & Prioritization)"]
-    end
-
-    subgraph Backend["⚡ Layer 3: High-Performance FastAPI Service"]
-        API["FastAPI 0.141 Async Engine"]
-        TrainStudio["Live Model Retraining Studio API<br/>(AdamW / Huber Loss Descent)"]
-        SARSynth["Synthetic SAR Scene Synthesis Engine"]
-        CAPEngine["NDMA CAP Multi-Channel Bulletin Generator"]
-    end
-
-    subgraph Frontend["🖥️ Layer 4: Interactive Command Center UI"]
-        DualMap["Dual Map Engine<br/>(Google Maps API + Tactical Leaflet)"]
-        TelemetryDash["Real-Time Threat Matrix & Gauges"]
-        TrainLab["Live Hyperparameter Tuning Lab"]
-        DispatchSim["Simulated Emergency Dispatch System"]
-    end
-
-    S1 --> FRN
-    CWC --> FRN
-    FIRMS --> FDN
-    CPCB --> AQI
-
-    FRN --> RE
-    FDN --> RE
-    AQI --> RE
-
-    RE --> API
-    DeepLearning --> TrainStudio
-    S1 --> SARSynth
-    RE --> CAPEngine
-
-    API --> DualMap
-    API --> TelemetryDash
-    TrainStudio --> TrainLab
-    CAPEngine --> DispatchSim
-```
-
----
 
 ## 🌟 Core System Highlights
 
